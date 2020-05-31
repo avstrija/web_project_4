@@ -1,16 +1,28 @@
 # Project 4: Around The U.S.
 
 ### Overview
+* Description
+* Design
+* What's in the code
+* GitHub Pages
+* About the author
 
-* Figma
-* Images
+**Intro**
 
-**Figma**
+This is a social media profile for travellers. The website is responsive: check out the mobile version. 
+
+**Design**
 
 * [Link to the project in Figma](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
 
-**Images**
+**What's in the code**
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+The CSS is structured in line with BEM methodology. JS is used for the popup window that let's you edit the user info.
 
-Have fun with JavaScript!
+**GitHub Pages**
+
+[See for yourself](https://avstrija.github.io/web_project_4/)
+
+**About the author**
+
+Dasha Borisenko-Orlowski is an emerging web developer with a strong background in creative writing, digital media, and marketing. Hit me up on [LinkedIn](https://www.linkedin.com/in/daria-borisenko-orlowski-a0228625). 
