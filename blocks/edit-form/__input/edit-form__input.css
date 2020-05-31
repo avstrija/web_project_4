@@ -1,0 +1,22 @@
+.edit-form__input {
+    border: none;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 30px;
+}
+
+.edit-form__input:first-of-type {
+    padding-top: 24px;
+}
+
+.edit-form__input::placeholder {
+    color: #000;
+  }
+  
+.edit-form__input::-ms-input-placeholder { 
+    color: #000;
+}
+
+.edit-form__input:focus {
+    outline: none;
+  }

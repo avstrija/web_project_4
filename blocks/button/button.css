@@ -1,0 +1,16 @@
+.button {
+    background-color: rgba(0,0,0,0);
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity .3s ease-out;
+    padding: 0;
+}
+
+.button:hover {
+    opacity: .6;
+    cursor: url('../../images/pointer.svg'), auto;
+}
+
+.button:focus {
+    outline: none;
+}

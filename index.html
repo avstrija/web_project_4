@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Around the U.S.</title>
+    <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body class="page">
+    <div class="page__overlay">
+        <div class="edit-form">
+            <h2 class="edit-form__title">Edit profile</h2>
+            <input type="text" class="edit-form__input edit-form__input_content_username">
+            <hr class="edit-form__line">
+            <input type="text" class="edit-form__input edit-form__input_content_bio">
+            <hr class="edit-form__line">
+            <button class="button edit-form__save-btn">Save</button>
+            <button class="button edit-form__close-btn"></button>
+        </div>
+    </div>
+    <header class="header">
+        <img src="images/logo.svg" class="header__logo">
+        <hr class="header__line">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <div class="profile__main">
+                <img src="images/image.jpg" alt="Userpic" class="profile__pic">
+                <div class="profile__text">
+                    <div class="profile__name">
+                        <h1 class="profile__username">Jacques Cousteau</h1>
+                        <button class="button profile__edit-btn"></button>
+                    </div>
+                    <p class="profile__bio">Explorer</p>
+                </div>
+            </div>
+            <button class="button profile__add-btn"></button>
+        </section>
+        <section class="photo-grid">
+            <ul class="photo-grid__posts">
+                <li class="post">
+                    <img src="./images/yosemite.jpg" alt="Yosemite Valley" class="post__image">
+                    <div class="post__info">
+                        <p class="post__caption">Yosemite Valley</p>
+                        <button class="button post__like"></button>
+                    </div>
+                </li>
+                <li class="post">
+                    <img src="./images/lake-louise.png" alt="Lake Louise" class="post__image">
+                    <div class="post__info">
+                        <p class="post__caption">Lake Louise</p>
+                        <button class="button post__like"></button>
+                    </div>
+                </li>
+                <li class="post">
+                    <img src="./images/bald-mountains.png" alt="Bald Mountains" class="post__image">
+                    <div class="post__info">
+                        <p class="post__caption">Bald Mountains</p>
+                        <button class="button post__like"></button>
+                    </div>
+                </li>
+                <li class="post">
+                    <img src="./images/latemar.png" alt="Latemar" class="post__image">
+                    <div class="post__info">
+                        <p class="post__caption">Latemar</p>
+                        <button class="button post__like"></button>
+                    </div>
+                </li>
+                <li class="post">
+                    <img src="./images/vanois.png" alt="Vanois" class="post__image">
+                    <div class="post__info">
+                        <p class="post__caption">Vanois National...</p>
+                        <button class="button post__like"></button>
+                    </div>
+                </li>
+                <li class="post">
+                    <img src="./images/lago-di-braies.png" alt="Lago di Braies" class="post__image">
+                    <div class="post__info">
+                        <p class="post__caption">Lago di Braies</p>
+                        <button class="button post__like"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">© 2020 Dasha Borisenko-Orlowski</p>
+    </footer>
+<script src="./script.js"></script>
+</body>
+</html>

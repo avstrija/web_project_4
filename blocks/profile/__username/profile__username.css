@@ -1,0 +1,14 @@
+.profile__username {
+    grid-column: 2;
+    font-size: 42px;
+    line-height: 56px;
+    font-weight: normal;
+    margin: 0;
+    max-width: 400px;
+}
+
+@media screen and (max-width: 425px) {
+    .profile__username {
+        font-size: 22px;
+    }
+}

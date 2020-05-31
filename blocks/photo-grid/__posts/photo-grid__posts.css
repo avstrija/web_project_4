@@ -1,0 +1,16 @@
+.photo-grid__posts {
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    grid-gap: 18px;
+    margin: 47px 0 0 0;
+    list-style: none;
+    padding: 0;
+}
+
+@media screen and (max-width: 425px) {
+    .photo-grid__posts {
+        grid-template-columns: auto;
+        grid-gap: 18px;
+        margin-top: 47px;
+    }
+}
