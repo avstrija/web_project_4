@@ -6,19 +6,27 @@ const username = document.querySelector(".profile__username");
 const bio = document.querySelector(".profile__bio");
 const inputUsername = document.querySelector(".edit-form__input_content_username");
 const inputBio = document.querySelector(".edit-form__input_content_bio");
-const pics = document.querySelectorAll(".post__image");
-let images = [
-    './images/yosemite.jpg',
-    './images/lake-louise.png',
-    './images/bald-mountains.png',
-    './images/latemar.png',
-    './images/vanois.png',
-    './images/lago-di-braies.png'
-] 
+const postGrid = document.querySelector(".photo-grid__posts");
+let posts = {
+    'Yosemite Valley':'./images/yosemite.jpg',
+    'Lake Louise':'./images/lake-louise.png',
+    'Bald Mountains':'./images/bald-mountains.png',
+    'Latemar':'./images/latemar.png',
+    'Vanois National...':'./images/vanois.png',
+    'Lago di Braies':'./images/lago-di-braies.png'
+}
 
-for (i=0;i<images.length;i++) {
-    pics[i].style.backgroundImage = "url('" + images[i] + "')";
-    console.log(pics[i]);
+let images = Object.values(posts);
+let captions = Object.keys(posts);
+
+function addPost(image, caption) {
+    postGrid.innerHTML += `<li class="post">
+        <div class="post__image" style="background-image: url('${image}');"></div>
+        <div class="post__info">
+            <p class="post__caption">${caption}</p>
+            <button class="button post__like"></button>
+        </div>
+    </li>`
 }
 
 function modal() {
@@ -40,6 +48,9 @@ function update(event) {
     event.preventDefault();
 }
 
+for (i=0;i<images.length;i++) {
+    addPost(images[i],captions[i]);
+}
 edit.addEventListener("click", popUp);
 close.addEventListener("click", modal);
 form.addEventListener("submit", update);
