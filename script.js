@@ -34,10 +34,8 @@ function modal() {
 }
 
 function popUp() {
-    inputUsername.value = "";
-    inputBio.value = "";
-    inputUsername.placeholder = username.textContent;
-    inputBio.placeholder = bio.textContent;
+    inputUsername.value = username.textContent;
+    inputBio.value = bio.textContent;
     modal();
 }
 

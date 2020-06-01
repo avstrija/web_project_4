@@ -10,13 +10,13 @@
     padding-top: 24px;
 }
 
-.edit-form__input::placeholder {
+/* .edit-form__input::placeholder {
     color: #000;
   }
   
 .edit-form__input::-ms-input-placeholder { 
     color: #000;
-}
+} */
 
 .edit-form__input:focus {
     outline: none;
