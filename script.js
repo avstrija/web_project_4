@@ -14,7 +14,7 @@ let posts = {
     'Latemar':'./images/latemar.png',
     'Vanois National...':'./images/vanois.png',
     'Lago di Braies':'./images/lago-di-braies.png'
-}
+};
 
 let images = Object.values(posts);
 let captions = Object.keys(posts);
@@ -26,7 +26,7 @@ function addPost(image, caption) {
             <p class="post__caption">${caption}</p>
             <button class="button post__like"></button>
         </div>
-    </li>`
+    </li>`;
 }
 
 function modal() {
