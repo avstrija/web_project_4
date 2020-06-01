@@ -1,5 +1,6 @@
 .edit-form__input {
     border: none;
+    width: 100%;
     font-size: 14px;
     line-height: 17px;
     margin-top: 30px;

@@ -7,20 +7,9 @@
     <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
-    <div class="page__overlay">
-        <div class="edit-form">
-            <h2 class="edit-form__title">Edit profile</h2>
-            <input type="text" class="edit-form__input edit-form__input_content_username">
-            <hr class="edit-form__line">
-            <input type="text" class="edit-form__input edit-form__input_content_bio">
-            <hr class="edit-form__line">
-            <button class="button edit-form__save-btn">Save</button>
-            <button class="button edit-form__close-btn"></button>
-        </div>
-    </div>
     <header class="header">
-        <img src="images/logo.svg" class="header__logo">
-        <hr class="header__line">
+        <img src="images/logo.svg" alt="Logo" class="header__logo">
+        <div class="header__line"></div>
     </header>
     <main class="content">
         <section class="profile">
@@ -39,42 +28,42 @@
         <section class="photo-grid">
             <ul class="photo-grid__posts">
                 <li class="post">
-                    <img src="./images/yosemite.jpg" alt="Yosemite Valley" class="post__image">
+                    <div class="post__image"></div>
                     <div class="post__info">
                         <p class="post__caption">Yosemite Valley</p>
                         <button class="button post__like"></button>
                     </div>
                 </li>
                 <li class="post">
-                    <img src="./images/lake-louise.png" alt="Lake Louise" class="post__image">
+                    <div class="post__image"></div>
                     <div class="post__info">
                         <p class="post__caption">Lake Louise</p>
                         <button class="button post__like"></button>
                     </div>
                 </li>
                 <li class="post">
-                    <img src="./images/bald-mountains.png" alt="Bald Mountains" class="post__image">
+                    <div class="post__image"></div>
                     <div class="post__info">
                         <p class="post__caption">Bald Mountains</p>
                         <button class="button post__like"></button>
                     </div>
                 </li>
                 <li class="post">
-                    <img src="./images/latemar.png" alt="Latemar" class="post__image">
+                    <div class="post__image"></div>
                     <div class="post__info">
                         <p class="post__caption">Latemar</p>
                         <button class="button post__like"></button>
                     </div>
                 </li>
                 <li class="post">
-                    <img src="./images/vanois.png" alt="Vanois" class="post__image">
+                    <div class="post__image"></div>
                     <div class="post__info">
                         <p class="post__caption">Vanois National...</p>
                         <button class="button post__like"></button>
                     </div>
                 </li>
                 <li class="post">
-                    <img src="./images/lago-di-braies.png" alt="Lago di Braies" class="post__image">
+                    <div class="post__image"></div>
                     <div class="post__info">
                         <p class="post__caption">Lago di Braies</p>
                         <button class="button post__like"></button>
@@ -86,6 +75,17 @@
     <footer class="footer">
         <p class="footer__copyright">© 2020 Dasha Borisenko-Orlowski</p>
     </footer>
+    <div class="page__overlay page__overlay_invisible">
+            <button class="button edit-form__close-btn"></button>
+            <form class="edit-form">
+                <h2 class="edit-form__title">Edit profile</h2>
+                <input type="text" class="edit-form__input edit-form__input_content_username">
+                <div class="edit-form__line"></div>
+                <input type="text" class="edit-form__input edit-form__input_content_bio">
+                <div class="edit-form__line"></div>
+                <input type="submit" value="Save" class="button edit-form__save-btn">
+            </form>
+    </div>
 <script src="./script.js"></script>
 </body>
 </html>

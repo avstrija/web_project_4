@@ -1,8 +1,6 @@
 .edit-form__close-btn {
     background-image: url('../../../images/close.svg');
-    position: absolute;
-    top: -40px;
-    right: -40px;
+    margin: 105px 0 0 470px;
     width: 40px;
     height: 40px;
     border: none;
@@ -10,8 +8,7 @@
 
 @media screen and (max-width: 425px) {
     .edit-form__close-btn { 
-        top: -20px;
-        right: -20px;
+        margin-left: 300px; 
         width: 25px;
         height: 25px;
         background-size: 30px;
