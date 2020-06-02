@@ -12,27 +12,3 @@
     height: 361px;
     display: flex;
 }
-
-.post:nth-of-type(1) {
-    background-image: url('../../images/yosemite.jpg');
-}
-
-.post:nth-of-type(2) {
-    background-image: url('../../images/lake-louise.png');
-}
-
-.post:nth-of-type(3) {
-    background-image: url('../../images/bald-mountains.png');
-}
-
-.post:nth-of-type(4) {
-    background-image: url('../../images/latemar.png');
-}
-
-.post:nth-of-type(5) {
-    background-image: url('../../images/vanois.png');
-}
-
-.post:nth-of-type(6) {
-    background-image: url('../../images/lago-di-braies.png');
-}
