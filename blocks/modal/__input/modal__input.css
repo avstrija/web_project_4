@@ -1,4 +1,4 @@
-.edit-form__input {
+.modal__input {
     border: none;
     width: 100%;
     font-size: 14px;
@@ -8,6 +8,6 @@
     border-bottom: 1px solid rgba(0,0,0,.2);
 }
 
-.edit-form__input:focus {
+.modal__input:focus {
     outline: none;
   }

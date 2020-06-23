@@ -1,0 +1,13 @@
+.modal__close-btn_type_view {
+    position: absolute;
+    margin: 0;
+    top: -40px;
+    right: -40px;
+}
+
+@media screen and (max-width: 425px) {
+    .modal__close-btn_type_view {
+        top: -25px;
+        right: -25px;
+    }
+}

@@ -1,7 +1,11 @@
 .post__info {
     display: flex;
-    width: 100%;
+    width: calc(100%-25px-21px);
+    height: 55px;
     justify-content: space-between;
+    /* align-self: flex-end; */
     align-items: baseline;
-    padding: 307px 15px 31px 21px;
+    background-color: #fff;
+    padding: 25px 15px 0 21px;
+    border-radius: 0 0 10px 10px;
 }

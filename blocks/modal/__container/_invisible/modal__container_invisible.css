@@ -1,0 +1,4 @@
+.modal__container_invisible {
+    visibility: hidden;
+    opacity: 0;
+}

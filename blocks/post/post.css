@@ -1,14 +1,15 @@
-@import url('./__image/post__image.css');
 @import url('./__caption/post__caption.css');
 @import url('./__info/post__info.css');
 @import url('./__like/post__like.css');
+@import url('./__like/_liked/post__like_liked.css');
+@import url('./__remove/post__remove.css');
+@import url('./__image/post__image.css');
 
 .post {
     background-color: #fff;
     border-radius: 10px;
     width: 282px;
-    background-size: 282px;
-    background-repeat: no-repeat;
-    height: 361px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

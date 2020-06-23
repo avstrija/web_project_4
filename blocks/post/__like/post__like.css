@@ -4,10 +4,13 @@
     width: 21px;
     height: 18px;
     border: none;
-    transition: transform .3s ease-out;
+    transition: opacity .3s ease-out;
 }
 
 .post__like:hover {
-    transform: scale(1.1);
     cursor: url('../../../images/pointer.svg'), auto;
+}
+
+.post__like:active {
+    opacity: .6;
 }

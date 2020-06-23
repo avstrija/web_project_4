@@ -1,0 +1,13 @@
+.modal__fullview {
+    position: relative;
+    max-width: 65vw;
+    max-height: 540px;
+    z-index: 2;
+}
+
+@media screen and (max-width: 425px) {
+    .modal__fullview {
+        max-width: 75vw;
+        max-height: 55vh;
+    }
+}

@@ -1,6 +1,3 @@
-@import url('./__overlay/page__overlay.css');
-@import url('./__overlay/_invisible/page__overlay_invisible.css');
-
 .page {
     font-family: 'Inter', 'Helvetica', 'Arial', sans-serif; 
     background-color: #000;

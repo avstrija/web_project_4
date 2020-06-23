@@ -1,0 +1,11 @@
+.post__remove {
+    background: url('../../../images/trash.svg');
+    background-repeat: no-repeat;
+    border: none;
+    background-size: contain;
+    width: 18px;
+    height: 20px;
+    margin-top: 18px;
+    margin-left: 249px;
+
+}

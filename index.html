@@ -26,56 +26,47 @@
         </section>
         <section class="photo-grid">
             <ul class="photo-grid__posts">
-                <li class="post" style="background-image: url('./images/yosemite.jpg');">
-                    <div class="post__info">
-                        <p class="post__caption">Yosemite Valley</p>
-                        <button class="button post__like"></button>
-                    </div>
-                </li>
-                <li class="post" style="background-image: url('./images/lake-louise.png');">
-                    <div class="post__info">
-                        <p class="post__caption">Lake Louise</p>
-                        <button class="button post__like"></button>
-                    </div>
-                </li>
-                <li class="post" style="background-image: url('./images/bald-mountains.png');">
-                    <div class="post__info">
-                        <p class="post__caption">Bald Mountains</p>
-                        <button class="button post__like"></button>
-                    </div>
-                </li>
-                <li class="post" style="background-image: url('./images/latemar.png');">
-                    <div class="post__info">
-                        <p class="post__caption">Latemar</p>
-                        <button class="button post__like"></button>
-                    </div>
-                </li>
-                <li class="post" style="background-image: url('./images/vanois.png');">
-                    <div class="post__info">
-                        <p class="post__caption">Vanois National...</p>
-                        <button class="button post__like"></button>
-                    </div>
-                </li>
-                <li class="post" style="background-image: url('./images/lago-di-braies.png');">
-                    <div class="post__info">
-                        <p class="post__caption">Lago di Braies</p>
-                        <button class="button post__like"></button>
-                </li>
             </ul>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__copyright">© 2020 Dasha Borisenko-Orlowski</p>
     </footer>
-    <div class="page__overlay page__overlay_invisible">
-            <button class="button edit-form__close-btn"></button>
-            <form class="edit-form">
-                <h2 class="edit-form__title">Edit profile</h2>
-                <input type="text" class="edit-form__input edit-form__input_content_username">
-                <input type="text" class="edit-form__input edit-form__input_content_bio">
-                <input type="submit" value="Save" class="button edit-form__save-btn">
+    <div class="modal__container modal__container_type_update modal__container_invisible">
+            <button class="button modal__close-btn" type="reset"></button>
+            <form class="modal modal_goal_update">
+                <h2 class="modal__title">Edit profile</h2>
+                <input type="text" class="modal__input modal__input_content_username">
+                <input type="text" class="modal__input modal__input_content_bio">
+                <input type="submit" value="Save" class="button modal__save-btn">
             </form>
     </div>
-<script src="./script.js"></script>
+    <div class="modal__container modal__container_type_create modal__container_invisible">
+        <button class="button modal__close-btn" type="reset"></button>
+        <form class="modal modal_goal_create">
+            <h2 class="modal__title">New Place</h2>
+            <input type="text" placeholder="Title" class="modal__input modal__input_content_place">
+            <input type="text" placeholder="Image URL" class="modal__input modal__input_content_link">
+            <input type="submit" value="Create" class="button modal__save-btn">
+        </form>
+</div>
+    <div class="modal__container modal__container_type_view modal__container_invisible">
+        <div class="modal__wrapper">
+            <button class="button modal__close-btn modal__close-btn_type_view" type="reset"></button>
+            <img class="modal__fullview">
+            <p class="modal__caption"></p>
+        </div>
+</div>
+    <template class="post-template">
+        <li class="post">
+            <div class="post__image">
+                <button class="button post__remove"></button>
+            </div>
+            <div class="post__info">
+                <p class="post__caption"></p>
+                <button class="button post__like"></button>
+        </li>
+    </template>
+<script src="./index.js"></script>
 </body>
 </html>
