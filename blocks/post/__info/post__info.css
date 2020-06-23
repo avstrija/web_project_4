@@ -1,6 +1,6 @@
 .post__info {
     display: flex;
-    width: calc(100%-46px);
+    width: calc(100% - 46px);
     height: 55px;
     justify-content: space-between;
     /* align-self: flex-end; */

@@ -122,9 +122,9 @@ closeView.addEventListener("click", () => {
 });
 
 formUpdate.addEventListener("submit", update);
-formCreate.addEventListener("submit", () => {
+formCreate.addEventListener("submit", (e) => {
     toggleModalState(containerAdd);
-    event.preventDefault();
+    e.preventDefault();
     postsContainer.prepend(addPost(inputCaption.value, inputLink.value));
     formCreate.reset();
     });
