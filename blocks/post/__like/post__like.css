@@ -1,7 +1,7 @@
 .post__like {
     background-image: url('../../../images/heart.svg');
     background-size: contain;
-    width: 21px;
+    width: 22px;
     height: 18px;
     border: none;
     transition: opacity .3s ease-out;

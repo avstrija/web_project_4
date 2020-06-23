@@ -28,8 +28,3 @@
         width: 200px;
     }
 }
-
-.modal_invisible {
-    height: 0;
-    visibility: 0;
-}

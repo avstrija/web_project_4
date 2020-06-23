@@ -27,7 +27,7 @@ const inputLink = document.querySelector(".modal__input_content_link");
 const postTemplate = document.querySelector(".post-template").content;
 const postsContainer = document.querySelector(".photo-grid__posts");
 
-let cards = [
+const cards = [
     {
         name: "Yosemite Valley",
         link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
@@ -58,11 +58,9 @@ function toggleModalState(container) {
     container.classList.toggle('modal__container_invisible');
 }
 
-function addPost(name, link, event="x") {
+function addPost(name, link) {
     const postElement = postTemplate.cloneNode(true);
-    console.log(name.slice(0,15));
-    let displayName = (name.length > 16) ? (name.slice(0,15) + "...") : name;
-    postElement.querySelector(".post__caption").textContent = displayName;
+    postElement.querySelector(".post__caption").textContent = name;
     const cardImage = postElement.querySelector(".post__image");
     cardImage.setAttribute("style", `background-image: url(${link})`);
     const remove = postElement.querySelector(".post__remove");
@@ -81,18 +79,19 @@ function addPost(name, link, event="x") {
         fullviewCaption.textContent = name;
         toggleModalState(containerView);
     });
-    if (event!=="x") {
-        formCreate.reset();
-        event.preventDefault();
-        postsContainer.prepend(postElement);
-    }
-    else {
-        postsContainer.append(postElement);
-    }
+    // if (event!=="x") {
+    //     // formCreate.reset();
+    //     // event.preventDefault();
+    //     // postsContainer.prepend(postElement);
+    // }
+    // else {
+    //     postsContainer.append(postElement);
+    // }
+    return postElement;
 }
 
 cards.forEach((el) => {
-    addPost(el.name, el.link);
+    postsContainer.append(addPost(el.name, el.link));
 });
 
 function popUp() {
@@ -123,8 +122,10 @@ closeView.addEventListener("click", () => {
 });
 
 formUpdate.addEventListener("submit", update);
-formCreate.addEventListener("submit", (e) => {
+formCreate.addEventListener("submit", () => {
     toggleModalState(containerAdd);
-    addPost(inputCaption.value, inputLink.value, e);
+    event.preventDefault();
+    postsContainer.prepend(addPost(inputCaption.value, inputLink.value));
+    formCreate.reset();
     });
 
