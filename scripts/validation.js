@@ -1,27 +1,13 @@
-// I changed the function so that it doesn't rely on classname order anymore but keeps the modifiers instead of ids
-const connectErrorInput = (input, form) => {
-    const matchString = 'modal__input_content_';
-    const inputType = [...input.classList].reduce((acc, className) => {
-        const index = className.indexOf(matchString);
-        if(index + 1) {
-            acc = className.substr(index + matchString.length);
-        }
-        return acc;
-    }, '');
-    console.log(form.querySelector('.modal__error_type_' + inputType))
-    return form.querySelector('.modal__error_type_' + inputType);
-};
-
-const showErrorMessage = (input, form, {errorClass, inputErrorClass, ...rest}) => {
-    const error = connectErrorInput(input, form);
+const showErrorMessage = (input, form, {errorClass, inputErrorClass}) => {
+    const error = form.querySelector(`#error-${input.id}`);
     error.textContent = input.validationMessage;
 
     error.classList.add(errorClass);
     input.classList.add(inputErrorClass);
 };
 
-const hideErrorMessage = (input, form, {errorClass, inputErrorClass, ...rest}) => {
-    const error = connectErrorInput(input,form); 
+const hideErrorMessage = (input, form, {errorClass, inputErrorClass}) => {
+    const error = form.querySelector(`#error-${input.id}`);
     error.textContent = "";
 
     error.classList.remove(errorClass);
@@ -40,7 +26,7 @@ const checkAllInputsValidity = (inputs) => {
     return inputs.every((input) => input.validity.valid)
 };
 
-const toggleButtonState = (isValid, button, {inactiveButtonClass,...rest}) => {
+const toggleButtonState = (isValid, button, {inactiveButtonClass}) => {
     if (isValid) {
         button.classList.remove(inactiveButtonClass);
         button.removeAttribute("disabled");
@@ -61,7 +47,7 @@ const enableValidation = ({formSelector, inputSelector, submitButtonSelector, ..
         }))
         
         inputs.forEach((input) => {
-            input.addEventListener("input", ((e) => {
+            input.addEventListener("input", (() => {
                 checkInputValidity(input, form, rest);
                 toggleButtonState(checkAllInputsValidity(inputs), button, rest);
             }))

@@ -37,11 +37,11 @@
             <form class="modal modal_goal_update">
                 <h2 class="modal__title">Edit profile</h2>
                 <fieldset class="modal__fieldset">
-                    <input type="text" class="modal__input modal__input_content_username" placeholder="Name" required maxlength="40" minlength="2">
-                    <span class="modal__error modal__error_type_username"></span>
+                    <input type="text" id="username" class="modal__input" placeholder="Name" required maxlength="40" minlength="2">
+                    <span id="error-username" class="modal__error"></span>
 
-                    <input type="text" class="modal__input modal__input_content_bio" placeholder="Who are you?" required maxlength="200" minlength="2">
-                    <span class="modal__error modal__error_type_bio"></span>
+                    <input type="text" id="bio" class="modal__input" placeholder="Who are you?" required maxlength="200" minlength="2">
+                    <span id="error-bio" class="modal__error"></span>
                 </fieldset>
                 
                 <button type="submit" class="button modal__save-btn modal__save-btn_disabled" disabled>Save</button>
@@ -52,11 +52,11 @@
         <form class="modal modal_goal_create">
             <h2 class="modal__title">New Place</h2>
             <fieldset class="modal__fieldset">
-                <input type="text" placeholder="Title" class="modal__input modal__input_content_place" required maxlength="30" minlength="1">
-                <span class="modal__error modal__error_type_place"></span>
+                <input type="text" placeholder="Title" id="place" class="modal__input" required maxlength="30" minlength="1">
+                <span id="error-place" class="modal__error modal__error_type_place"></span>
 
-                <input type="url" placeholder="Image URL" class="modal__input modal__input_content_link" required>
-                <span class="modal__error modal__error_type_link"></span>
+                <input type="url" placeholder="Image URL" id="link" class="modal__input" required>
+                <span id="error-link" class="modal__error modal__error_type_link"></span>
             </fieldset>
             <button type="submit" class="button modal__save-btn modal__save-btn_disabled" disabled>Create</button>
         </form>

@@ -14,11 +14,12 @@ const fullviewCaption = containerView.querySelector(".modal__caption");
 
 const username = document.querySelector(".profile__username");
 const bio = document.querySelector(".profile__bio");
-const inputUsername = document.querySelector(".modal__input_content_username");
-const inputBio = document.querySelector(".modal__input_content_bio");
 
-const inputCaption = document.querySelector(".modal__input_content_place");
-const inputLink = document.querySelector(".modal__input_content_link");
+const inputUsername = document.querySelector("#username");
+const inputBio = document.querySelector("#bio");
+
+const inputCaption = document.querySelector("#place");
+const inputLink = document.querySelector("#link");
 
 const postTemplate = document.querySelector(".post-template").content;
 const postsContainer = document.querySelector(".photo-grid__posts");
@@ -51,10 +52,19 @@ const cards = [
 ];
 
 const toggleModalState = (container) => {
-    container.classList.contains('modal__container_active') ? document.removeEventListener("keydown", escKeyHandler) : document.addEventListener("keydown", escKeyHandler);
+    if (container.classList.contains('modal__container_active')){
+        if (container===containerAdd) {
+            formCreate.reset();
+        }
+        document.removeEventListener("keydown", escKeyHandler)
+    } else {
+        document.addEventListener("keydown", escKeyHandler);
+    }
     container.classList.toggle('modal__container_active');
 }
 
+//It's referencing toggleModalState, that's why I call it before defining. If I swap them,
+//toggleModalState will be referenced before it's defined
 const escKeyHandler = (e) => {
     const activeModal = document.querySelector(".modal__container_active");
     if (e.key === "Escape") {
@@ -134,6 +144,5 @@ formCreate.addEventListener("submit", (e) => {
     e.preventDefault();
     postsContainer.prepend(addPost(inputCaption.value, inputLink.value));
     toggleModalState(containerAdd);
-    formCreate.reset();
     });
 
