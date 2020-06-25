@@ -27,9 +27,11 @@ const checkInputValidity = (input, form, rest) => {
     }
 };
 
-const toggleButtonState = (inputs, button, {inactiveButtonClass,...rest}) => {
-    const isValid = inputs.every((input) => input.validity.valid)
+const checkAllInputsValidity = (inputs) => {
+    return inputs.every((input) => input.validity.valid)
+};
 
+const toggleButtonState = (isValid, button, {inactiveButtonClass,...rest}) => {
     if (isValid) {
         button.classList.remove(inactiveButtonClass);
         button.removeAttribute("disabled");
@@ -42,17 +44,17 @@ const toggleButtonState = (inputs, button, {inactiveButtonClass,...rest}) => {
 const enableValidation = ({formSelector, inputSelector, submitButtonSelector, ...rest}) => {
     const forms = [...document.querySelectorAll(formSelector)];
     forms.forEach((form) => {
-        form.addEventListener("submit", ((e) => {
-            e.preventDefault()
-        }))
-
         const inputs = [...form.querySelectorAll(inputSelector)];
         const button = form.querySelector(submitButtonSelector);
+        form.addEventListener("submit", ((e) => {
+            e.preventDefault()
+            toggleButtonState(false, button, rest);
+        }))
         
         inputs.forEach((input) => {
             input.addEventListener("input", ((e) => {
                 checkInputValidity(input, form, rest);
-                toggleButtonState(inputs, button, rest);
+                toggleButtonState(checkAllInputsValidity(inputs), button, rest);
             }))
         });
     });
