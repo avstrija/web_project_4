@@ -1,10 +1,19 @@
-const connectErrorInput = (input) => {
-    const splitModifier = input.classList[1].split("_");
-    return document.querySelector(".modal__error_" + splitModifier[splitModifier.length-1]);
+// I changed the function so that it doesn't rely on classname order anymore but keeps the modifiers instead of ids
+const connectErrorInput = (input, form) => {
+    const matchString = 'modal__input_content_';
+    const inputType = [...input.classList].reduce((acc, className) => {
+        const index = className.indexOf(matchString);
+        if(index + 1) {
+            acc = className.substr(index + matchString.length);
+        }
+        return acc;
+    }, '');
+    console.log(form.querySelector('.modal__error_type_' + inputType))
+    return form.querySelector('.modal__error_type_' + inputType);
 };
 
 const showErrorMessage = (input, form, {errorClass, inputErrorClass, ...rest}) => {
-    const error = connectErrorInput(input);
+    const error = connectErrorInput(input, form);
     error.textContent = input.validationMessage;
 
     error.classList.add(errorClass);
@@ -12,7 +21,7 @@ const showErrorMessage = (input, form, {errorClass, inputErrorClass, ...rest}) =
 };
 
 const hideErrorMessage = (input, form, {errorClass, inputErrorClass, ...rest}) => {
-    const error = connectErrorInput(input); 
+    const error = connectErrorInput(input,form); 
     error.textContent = "";
 
     error.classList.remove(errorClass);

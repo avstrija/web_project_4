@@ -51,7 +51,15 @@ const cards = [
 ];
 
 const toggleModalState = (container) => {
+    container.classList.contains('modal__container_active') ? document.removeEventListener("keydown", escKeyHandler) : document.addEventListener("keydown", escKeyHandler);
     container.classList.toggle('modal__container_active');
+}
+
+const escKeyHandler = (e) => {
+    const activeModal = document.querySelector(".modal__container_active");
+    if (e.key === "Escape") {
+        toggleModalState(activeModal);
+    }
 }
 
 const addPost = (name, link) => {
@@ -88,7 +96,7 @@ cards.forEach((el) => {
 const escModal = () => {
     const modalContainers = [...document.querySelectorAll(".modal__container")];
     const modals = [formUpdate, formCreate, fullviewWrapper];
-    
+
     modalContainers.forEach((modalContainer) => {
         modalContainer.addEventListener("click", (e) => {
             toggleModalState(e.target);
@@ -99,13 +107,6 @@ const escModal = () => {
             });
     });
 
-    document.addEventListener("keydown", (e) => {
-        const activeModal = document.querySelector(".modal__container_active");
-        if (activeModal && e.key === "Escape") {
-            toggleModalState(activeModal);
-        }
-    });
-    
     modals.forEach((modal) => {
         modal.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -130,9 +131,9 @@ formUpdate.addEventListener("submit", () => {
     toggleModalState(containerEdit);
 });
 formCreate.addEventListener("submit", (e) => {
-    toggleModalState(containerAdd);
     e.preventDefault();
     postsContainer.prepend(addPost(inputCaption.value, inputLink.value));
+    toggleModalState(containerAdd);
     formCreate.reset();
     });
 
