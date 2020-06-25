@@ -8,6 +8,8 @@
     align-items: center;
     flex-direction: column;
     transition: all .3s ease-out;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .modal__container::after {

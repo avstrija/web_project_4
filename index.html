@@ -32,25 +32,36 @@
     <footer class="footer">
         <p class="footer__copyright">© 2020 Dasha Borisenko-Orlowski</p>
     </footer>
-    <div class="modal__container modal__container_type_update modal__container_invisible">
+    <div class="modal__container modal__container_type_update">
             <button class="button modal__close-btn" type="reset"></button>
             <form class="modal modal_goal_update">
                 <h2 class="modal__title">Edit profile</h2>
-                <input type="text" class="modal__input modal__input_content_username">
-                <input type="text" class="modal__input modal__input_content_bio">
-                <input type="submit" value="Save" class="button modal__save-btn">
+                <fieldset class="modal__fieldset">
+                    <input type="text" class="modal__input modal__input_content_username" placeholder="Name" required maxlength="40" minlength="2">
+                    <span class="modal__error modal__error_username"></span>
+
+                    <input type="text" class="modal__input modal__input_content_bio" placeholder="Who are you?" required maxlength="200" minlength="2">
+                    <span class="modal__error modal__error_bio"></span>
+                </fieldset>
+                
+                <button type="submit" class="button modal__save-btn modal__save-btn_disabled" disabled>Save</button>
             </form>
     </div>
-    <div class="modal__container modal__container_type_create modal__container_invisible">
+    <div class="modal__container modal__container_type_create">
         <button class="button modal__close-btn" type="reset"></button>
         <form class="modal modal_goal_create">
             <h2 class="modal__title">New Place</h2>
-            <input type="text" placeholder="Title" class="modal__input modal__input_content_place">
-            <input type="text" placeholder="Image URL" class="modal__input modal__input_content_link">
-            <input type="submit" value="Create" class="button modal__save-btn">
+            <fieldset class="modal__fieldset">
+                <input type="text" placeholder="Title" class="modal__input modal__input_content_place" required maxlength="30" minlength="1">
+                <span class="modal__error modal__error_place"></span>
+
+                <input type="url" placeholder="Image URL" class="modal__input modal__input_content_link" required>
+                <span class="modal__error modal__error_link"></span>
+            </fieldset>
+            <button type="submit" class="button modal__save-btn modal__save-btn_disabled" disabled>Create</button>
         </form>
 </div>
-    <div class="modal__container modal__container_type_view modal__container_invisible">
+    <div class="modal__container modal__container_type_view">
         <div class="modal__wrapper">
             <button class="button modal__close-btn modal__close-btn_type_view" type="reset"></button>
             <img class="modal__fullview">
@@ -68,6 +79,7 @@
             </div>
         </li>
     </template>
-<script src="./index.js"></script>
+<script src="./scripts/index.js" defer></script>
+<script src="./scripts/validation.js" defer></script>
 </body>
 </html>

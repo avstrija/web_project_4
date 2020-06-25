@@ -7,14 +7,10 @@ const containerView = document.querySelector(".modal__container_type_view");
 
 const formUpdate = document.querySelector(".modal_goal_update");
 const formCreate = document.querySelector(".modal_goal_create");
+const fullviewWrapper = containerView.querySelector(".modal__wrapper");
 
 const fullviewImage = containerView.querySelector(".modal__fullview");
 const fullviewCaption = containerView.querySelector(".modal__caption");
-
-const closeAdd = containerAdd.querySelector(".modal__close-btn");
-const closeEdit = containerEdit.querySelector(".modal__close-btn");
-const closeView = containerView.querySelector(".modal__close-btn");
-
 
 const username = document.querySelector(".profile__username");
 const bio = document.querySelector(".profile__bio");
@@ -54,20 +50,23 @@ const cards = [
     }
 ];
 
-function toggleModalState(container) {
-    container.classList.toggle('modal__container_invisible');
+const toggleModalState = (container) => {
+    container.classList.toggle('modal__container_active');
 }
 
-function addPost(name, link) {
+const addPost = (name, link) => {
     const postElement = postTemplate.cloneNode(true);
     postElement.querySelector(".post__caption").textContent = name;
+    
     const cardImage = postElement.querySelector(".post__image");
     cardImage.setAttribute("style", `background-image: url(${link})`);
+    
     const remove = postElement.querySelector(".post__remove");
     remove.addEventListener("click", (e) => {
         e.stopPropagation();
         e.target.closest(".post").remove();
     });
+    
     const like = postElement.querySelector(".post__like");
     like.addEventListener("click", () => {
         like.classList.toggle('post__like_liked');
@@ -79,49 +78,57 @@ function addPost(name, link) {
         fullviewCaption.textContent = name;
         toggleModalState(containerView);
     });
-    // if (event!=="x") {
-    //     // formCreate.reset();
-    //     // event.preventDefault();
-    //     // postsContainer.prepend(postElement);
-    // }
-    // else {
-    //     postsContainer.append(postElement);
-    // }
     return postElement;
-}
+;}
 
 cards.forEach((el) => {
     postsContainer.append(addPost(el.name, el.link));
 });
 
-function popUp() {
+const escModal = () => {
+    const modalContainers = [...document.querySelectorAll(".modal__container")];
+    const modals = [formUpdate, formCreate, fullviewWrapper];
+    
+    modalContainers.forEach((modalContainer) => {
+        modalContainer.addEventListener("click", (e) => {
+            toggleModalState(e.target);
+      });
+        const close = modalContainer.querySelector(".modal__close-btn")
+        close.addEventListener("click", () => {
+                toggleModalState(modalContainer);
+            });
+    });
+
+    document.addEventListener("keydown", (e) => {
+        const activeModal = document.querySelector(".modal__container_active");
+        if (activeModal && e.key === "Escape") {
+            toggleModalState(activeModal);
+        }
+    });
+    
+    modals.forEach((modal) => {
+        modal.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+    });
+};
+
+escModal();
+
+edit.addEventListener("click", () => {
     inputUsername.value = username.textContent;
     inputBio.value = bio.textContent;
     toggleModalState(containerEdit);
-}
-
-function update(event) {
-    username.textContent = inputUsername.value;
-    bio.textContent = inputBio.value;
-    toggleModalState(containerEdit);
-    event.preventDefault();
-}
-
-edit.addEventListener("click", popUp);
+});
 add.addEventListener("click", () => {
     toggleModalState(containerAdd);
 });
-closeAdd.addEventListener("click", () => {
-    toggleModalState(containerAdd);
-});
-closeEdit.addEventListener("click", () => {
+
+formUpdate.addEventListener("submit", () => {
+    username.textContent = inputUsername.value;
+    bio.textContent = inputBio.value;
     toggleModalState(containerEdit);
 });
-closeView.addEventListener("click", () => {
-    toggleModalState(containerView);
-});
-
-formUpdate.addEventListener("submit", update);
 formCreate.addEventListener("submit", (e) => {
     toggleModalState(containerAdd);
     e.preventDefault();

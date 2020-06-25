@@ -2,14 +2,14 @@
     color: #fff;
     width: 100%;
     height: 50px;
+    min-height: 50px;
     border-radius: 2px;
-    margin-top: 48px;
     background-color: #000;
     font-size: 18px;
     line-height: 22px;
     font-weight: 300;
 }
 
-.modal__save-btn:hover {
+.modal__save-btn:hover:enabled {
     opacity: .8;
 }

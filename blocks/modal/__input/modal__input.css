@@ -11,3 +11,7 @@
 .modal__input:focus {
     outline: none;
   }
+
+.modal__input:invalid {
+    border-bottom: 1px solid #FF0000;
+}

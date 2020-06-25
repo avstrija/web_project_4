@@ -1,0 +1,5 @@
+.modal__save-btn_disabled {
+    opacity: .2;
+    background-color: #fff;
+    color: #000;
+}

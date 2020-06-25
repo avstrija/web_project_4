@@ -1,5 +1,5 @@
 @import url('./__container/modal__container.css');
-@import url('./__container/_invisible/modal__container_invisible.css');
+@import url('./__container/_active/modal__container_active.css');
 @import url('./__title/modal__title.css');
 @import url('./__input/modal__input.css');
 @import url('./__save-btn/modal__save-btn.css');
@@ -9,6 +9,10 @@
 @import url('./__wrapper/modal__wrapper.css');
 @import url('./__close-btn/_type/modal__close-btn_type_view.css');
 @import url('./__container/__type/modal__container_type_view.css');
+@import url('./__error/modal__error.css');
+@import url('./__error/_visible/modal__error_visible.css');
+@import url('./__save-btn/_disabled/modal__save-btn_disabled.css');
+@import url('./__fieldset/modal__fieldset.css');
 
 .modal {
     position: relative;
@@ -21,6 +25,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 @media screen and (max-width: 425px) {
