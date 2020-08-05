@@ -1,3 +1,6 @@
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
+
 const edit = document.querySelector(".profile__edit-btn");
 const add = document.querySelector(".profile__add-btn");
 
@@ -9,9 +12,6 @@ const formUpdate = document.querySelector(".modal_goal_update");
 const formCreate = document.querySelector(".modal_goal_create");
 const fullviewWrapper = containerView.querySelector(".modal__wrapper");
 
-const fullviewImage = containerView.querySelector(".modal__fullview");
-const fullviewCaption = containerView.querySelector(".modal__caption");
-
 const username = document.querySelector(".profile__username");
 const bio = document.querySelector(".profile__bio");
 
@@ -21,7 +21,6 @@ const inputBio = document.querySelector("#bio");
 const inputCaption = document.querySelector("#place");
 const inputLink = document.querySelector("#link");
 
-const postTemplate = document.querySelector(".post-template").content;
 const postsContainer = document.querySelector(".photo-grid__posts");
 
 const cards = [
@@ -51,6 +50,20 @@ const cards = [
     }
 ];
 
+const settings = {
+    inputSelector: ".modal__input",
+    submitButtonSelector: ".modal__save-btn",
+    inactiveButtonClass: "modal__save-btn_disabled",
+    inputErrorClass: "modal__input_type_error",
+    errorClass: "modal__error_visible"
+};
+
+const editProfileValidation = new FormValidator(settings, formUpdate);
+const addCardValidation = new FormValidator(settings, formCreate);
+
+editProfileValidation.enableValidation();
+addCardValidation.enableValidation();
+
 const toggleModalState = (container) => {
     if (container.classList.contains('modal__container_active')){
         if (container===containerAdd) {
@@ -63,8 +76,6 @@ const toggleModalState = (container) => {
     container.classList.toggle('modal__container_active');
 }
 
-//It's referencing toggleModalState, that's why I call it before defining. If I swap them,
-//toggleModalState will be referenced before it's defined
 const escKeyHandler = (e) => {
     const activeModal = document.querySelector(".modal__container_active");
     if (e.key === "Escape") {
@@ -72,35 +83,9 @@ const escKeyHandler = (e) => {
     }
 }
 
-const addPost = (name, link) => {
-    const postElement = postTemplate.cloneNode(true);
-    postElement.querySelector(".post__caption").textContent = name;
-    
-    const cardImage = postElement.querySelector(".post__image");
-    cardImage.setAttribute("style", `background-image: url(${link})`);
-    
-    const remove = postElement.querySelector(".post__remove");
-    remove.addEventListener("click", (e) => {
-        e.stopPropagation();
-        e.target.closest(".post").remove();
-    });
-    
-    const like = postElement.querySelector(".post__like");
-    like.addEventListener("click", () => {
-        like.classList.toggle('post__like_liked');
-    });
-
-    cardImage.addEventListener('click', () => {
-        fullviewImage.src = link;
-        fullviewImage.alt = name;
-        fullviewCaption.textContent = name;
-        toggleModalState(containerView);
-    });
-    return postElement;
-;}
-
 cards.forEach((el) => {
-    postsContainer.append(addPost(el.name, el.link));
+    const post = new Card(el, ".post-template");
+    postsContainer.append(post.generateCard());
 });
 
 const escModal = () => {
@@ -142,7 +127,10 @@ formUpdate.addEventListener("submit", () => {
 });
 formCreate.addEventListener("submit", (e) => {
     e.preventDefault();
-    postsContainer.prepend(addPost(inputCaption.value, inputLink.value));
+    const data = {name: inputCaption.value, 
+                  link: inputLink.value};
+    const post = new Card(data, ".post-template");
+    postsContainer.prepend(post.generateCard());
     toggleModalState(containerAdd);
     });
 
