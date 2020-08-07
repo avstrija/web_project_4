@@ -1,12 +1,13 @@
-.modal__wrapper {
+.modal_type_view {
     position: relative;
     display: flex;
     flex-direction: column;
     margin-top: calc(90px - 36px);
+    max-width: 90vw;
 }
 
 @media screen and (max-width: 425px) {
-    .modal__wrapper {
+    .modal_type_view {
         margin-top: 100px;
     }
 }

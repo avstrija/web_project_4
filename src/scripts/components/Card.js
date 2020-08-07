@@ -1,36 +1,9 @@
-const container = document.querySelector(".modal__container_type_view");
-
-const toggleModalState = () => {
-    if (container.classList.contains('modal__container_active')){
-        document.removeEventListener("keydown", escKeyHandler)
-    } else {
-        document.addEventListener("keydown", escKeyHandler);
-    }
-    container.classList.toggle('modal__container_active');
-}
-
-const escKeyHandler = (e) => {
-    if (e.key === "Escape") {
-        toggleModalState(container);
-    }
-}
-
-const handlePreviewPicture = (data) => {
-    const fullviewImage = container.querySelector(".modal__fullview");
-    const fullviewCaption = container.querySelector(".modal__caption");
-    
-    fullviewImage.src = data.link;
-    fullviewImage.alt = data.name;
-    fullviewCaption.textContent = data.name;
-    
-    toggleModalState();
-}
-
 export default class Card {
-    constructor(data, cardTemplateSelector) {
-        this._name = data.name;
-        this._link = data.link;
+    constructor({place, link}, cardTemplateSelector, handleCardClick) {
+        this._name = place;
+        this._link = link;
         this._cardTemplateSelector = cardTemplateSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _handleLikeIcon(e) {
@@ -48,7 +21,7 @@ export default class Card {
         
         remove.addEventListener("click", this._handleDeleteCard);
         like.addEventListener("click", this._handleLikeIcon);
-        this._cardImage.addEventListener('click', () => handlePreviewPicture({name: this._name, link: this._link}));
+        this._cardImage.addEventListener('click', () => this._handleCardClick());
     }
 
     _getCardTemplate() {

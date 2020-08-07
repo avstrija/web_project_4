@@ -1,3 +1,5 @@
+@import url('./_type/modal_type_form.css');
+@import url('./_type/modal_type_view.css');
 @import url('./__container/modal__container.css');
 @import url('./__container/_active/modal__container_active.css');
 @import url('./__title/modal__title.css');
@@ -6,30 +8,10 @@
 @import url('./__close-btn/modal__close-btn.css');
 @import url('./__fullview/modal__fullview.css');
 @import url('./__caption/modal__caption.css');
-@import url('./__wrapper/modal__wrapper.css');
 @import url('./__close-btn/_type/modal__close-btn_type_view.css');
-@import url('./__container/__type/modal__container_type_view.css');
+@import url('./__container/_type/modal__container_type_view.css');
 @import url('./__error/modal__error.css');
 @import url('./__error/_visible/modal__error_visible.css');
 @import url('./__save-btn/_disabled/modal__save-btn_disabled.css');
 @import url('./__fieldset/modal__fieldset.css');
 
-.modal {
-    position: relative;
-    z-index: 2;
-    width: 358px;
-    height: 280px;
-    padding: 34px 36px 36px 36px;
-    background: #FFFFFF;
-    box-shadow: 0 0 25px rgba(0, 0, 0, .15);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-@media screen and (max-width: 425px) {
-    .modal {
-        width: 200px;
-    }
-}
