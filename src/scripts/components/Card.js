@@ -10,9 +10,10 @@ export default class Card {
         e.target.classList.toggle('post__like_liked');
     }
 
+    //Sorry, using this._card breaks everything
     _handleDeleteCard(e) {
         e.stopPropagation();
-        this._card.closest(".post").remove();
+        e.target.closest(".post").remove();
     }
 
     _setEventListeners() {

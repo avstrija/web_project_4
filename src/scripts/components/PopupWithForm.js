@@ -17,9 +17,11 @@ export default class PopupWithForm extends Popup {
         return this._formValues;
     }
 
+    //Sorry, but the form stops working if I use reset. 
+    //I think the platform also teaches us to clear inputs like this
     clear() {
         this._inputList.forEach((input) => {
-            input.reset();
+            input.value = "";
         });
     }
 

@@ -57,8 +57,8 @@ const postCreate = new PopupWithForm(".modal__container_type_create", ".modal_go
     (e, data) => {
         e.preventDefault();
         const post = new Card(data, ".post-template", () => {modalView.open(data)});
-        feed.addItem(post.generateCard());
         postCreate.clear();
+        feed.addItem(post.generateCard());
     },
 );
 postCreate.setEventListeners();
