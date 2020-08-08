@@ -43,13 +43,11 @@ const cards = [
         link: "https://code.s3.yandex.net/web-code/lago.jpg"
     }
 ];
-const handleFullView = (data) => {
-    const modalView = new PopupWithImage(".modal__container_type_view");
-            modalView.setEventListeners();
-            modalView.open(data);
-};
+const modalView = new PopupWithImage(".modal__container_type_view");
+modalView.setEventListeners();
+
 const feed = new Section({items: cards, renderer: (item) => {
-    const card = new Card(item, ".post-template", () => handleFullView(item));
+    const card = new Card(item, ".post-template", () => {modalView.open(item)});
     const cardElement = card.generateCard();
     feed.addItem(cardElement);
     }
@@ -58,7 +56,7 @@ feed.renderItems();
 const postCreate = new PopupWithForm(".modal__container_type_create", ".modal_goal_create", ".profile__add-btn",
     (e, data) => {
         e.preventDefault();
-        const post = new Card(data, ".post-template", () => handleFullView(data));
+        const post = new Card(data, ".post-template", () => {modalView.open(data)});
         postCreate.clear();
         feed.addItem(post.generateCard());
     },

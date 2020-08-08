@@ -12,7 +12,7 @@ export default class Card {
 
     _handleDeleteCard(e) {
         e.stopPropagation();
-        e.target.closest(".post").remove();
+        this._card.closest(".post").remove();
     }
 
     _setEventListeners() {

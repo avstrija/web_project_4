@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack",
+    "build": "rimraf -rf dist && webpack",
     "dev": "webpack-dev-server --open"
   },
   "author": "Dasha Borisenko-Orlowski",
@@ -26,6 +26,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0"
+    "babel-polyfill": "^6.26.0",
+    "rimraf": "^3.0.2"
   }
 }
