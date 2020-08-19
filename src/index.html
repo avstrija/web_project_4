@@ -13,13 +13,15 @@
     <main class="content">
         <section class="profile">
             <div class="profile__main">
-                <img src="images/image.jpg" alt="Userpic" class="profile__pic">
+                <div class="profile__userpic">
+                    <img alt="Userpic" class="profile__pic">
+                </div>
                 <div class="profile__text">
                     <div class="profile__name">
-                        <h1 class="profile__username">Jacques Cousteau</h1>
+                        <h1 class="profile__username"></h1>
                         <button class="button profile__edit-btn"></button>
                     </div>
-                    <p class="profile__bio">Explorer</p>
+                    <p class="profile__bio"></p>
                 </div>
             </div>
             <button class="button profile__add-btn"></button>
@@ -40,8 +42,8 @@
                     <input type="text" id="username" class="modal__input" placeholder="Name" required maxlength="40" minlength="2">
                     <span id="error-username" class="modal__error"></span>
 
-                    <input type="text" id="bio" class="modal__input" placeholder="Who are you?" required maxlength="200" minlength="2">
-                    <span id="error-bio" class="modal__error"></span>
+                    <input type="text" id="about" class="modal__input" placeholder="Who are you?" required maxlength="200" minlength="2">
+                    <span id="error-about" class="modal__error"></span>
                 </fieldset>
                 
                 <button type="submit" class="button modal__save-btn modal__save-btn_disabled" disabled>Save</button>
@@ -52,14 +54,32 @@
         <form class="modal modal_type_form modal_goal_create">
             <h2 class="modal__title">New Place</h2>
             <fieldset class="modal__fieldset">
-                <input type="text" placeholder="Title" id="place" class="modal__input" required maxlength="30" minlength="1">
-                <span id="error-place" class="modal__error modal__error_type_place"></span>
+                <input type="text" placeholder="Title" id="name" class="modal__input" required maxlength="30" minlength="1">
+                <span id="error-name" class="modal__error modal__error_type_name"></span>
 
                 <input type="url" placeholder="Image URL" id="link" class="modal__input" required>
                 <span id="error-link" class="modal__error modal__error_type_link"></span>
             </fieldset>
             <button type="submit" class="button modal__save-btn modal__save-btn_disabled" disabled>Create</button>
         </form>
+</div>
+<div class="modal__container modal__container_type_avatar">
+    <button class="button modal__close-btn" type="reset"></button>
+    <form class="modal modal_type_form modal_goal_avatar">
+        <h2 class="modal__title">Change profile picture</h2>
+        <fieldset class="modal__fieldset">
+            <input type="url" placeholder="Image URL" id="avatar" class="modal__input" required>
+            <span id="error-avatar" class="modal__error modal__error_type_link"></span>
+        </fieldset>
+        <button type="submit" class="button modal__save-btn modal__save-btn_disabled" disabled>Create</button>
+    </form>
+</div>
+<div class="modal__container modal__container_type_delete">
+    <button class="button modal__close-btn" type="reset"></button>
+    <form class="modal modal_type_form modal_goal_delete">
+        <h2 class="modal__title">Are you sure?</h2>
+        <button type="submit" class="button modal__save-btn">Yes</button>
+    </form>
 </div>
     <div class="modal__container modal__container_type_view">
         <div class="modal modal_type_view">
@@ -71,11 +91,14 @@
     <template class="post-template">
         <li class="post">
             <div class="post__image">
-                <button class="button post__remove"></button>
+                <button class="button post__remove post__remove_disabled"></button>
             </div>
             <div class="post__info">
                 <p class="post__caption"></p>
-                <button class="button post__like"></button>
+                <div class="post__likes">
+                    <button class="button post__like"></button>
+                    <p class="post__like-count">6</p>
+                </div>
             </div>
         </li>
     </template>

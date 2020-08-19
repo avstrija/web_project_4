@@ -3,8 +3,6 @@
     width: calc(100% - 46px);
     height: 55px;
     justify-content: space-between;
-    /* align-self: flex-end; */
-    align-items: baseline;
     background-color: #fff;
     padding: 25px 15px 0 21px;
     border-radius: 0 0 10px 10px;

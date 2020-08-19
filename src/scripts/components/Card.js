@@ -1,28 +1,27 @@
 export default class Card {
-    constructor({place, link}, cardTemplateSelector, handleCardClick) {
-        this._name = place;
-        this._link = link;
+    constructor(data, cardTemplateSelector, handleCardClick, handleDeleteClick, handleLikeIcon) {
+        this._name = data.name;
+        this._link = data.link;
+        this._creator = data.owner._id;
+        this._likes = data.likes;
         this._cardTemplateSelector = cardTemplateSelector;
         this._handleCardClick = handleCardClick;
+        this._id = data._id;
+        this._handleDeleteClick = handleDeleteClick;
+        this._handleLikeIcon = handleLikeIcon;
     }
 
-    _handleLikeIcon(e) {
-        e.target.classList.toggle('post__like_liked');
-    }
-
-    //Sorry, using this._card breaks everything
-    _handleDeleteCard(e) {
-        e.stopPropagation();
-        e.target.closest(".post").remove();
+    id() {
+        return this._id;
     }
 
     _setEventListeners() {
         const remove = this._card.querySelector(".post__remove");
         const like = this._card.querySelector(".post__like");
         
-        remove.addEventListener("click", this._handleDeleteCard);
-        like.addEventListener("click", this._handleLikeIcon);
-        this._cardImage.addEventListener('click', () => this._handleCardClick());
+        remove.addEventListener("click", (e) => this._handleDeleteClick(e, this._id));
+        like.addEventListener("click", (e) => this._handleLikeIcon(e, this._id));
+        this._cardImage.addEventListener('click', (e) => this._handleCardClick(e));
     }
 
     _getCardTemplate() {
@@ -30,14 +29,21 @@ export default class Card {
         return postTemplate;
     }
 
-    generateCard() {
-        const postElement = this._getCardTemplate();
-        this._card = postElement;
+    generateCard(myId) { 
+        this._card = this._getCardTemplate();
         this._card.querySelector(".post__caption").textContent = this._name;
+        if (this._creator === myId) {
+            this._card.querySelector(".post__remove").classList.remove("post__remove_disabled");
+        }
         
         this._cardImage = this._card.querySelector(".post__image");
         this._cardImage.setAttribute("style", `background-image: url(${this._link})`);
+        this._card.querySelector(".post__like-count").textContent = this._likes.length;
+        if(this._likes.some((like) => like._id === myId)) {
+            this._card.querySelector(".post__like").classList.add("post__like_liked");
+        }
         this._setEventListeners();
+        
         return this._card;
     }
 }
