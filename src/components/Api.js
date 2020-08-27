@@ -3,6 +3,10 @@ export default class Api {
       this._baseUrl = baseUrl;
       this._headers = headers;
     }
+
+    getAppInfo() {
+        return Promise.all([this.getUserInfo(), this.getCardList()]);
+    }
     //GET https://around.nomoreparties.co/v1/groupId/cards
     getCardList() {
         return fetch(this._baseUrl + '/cards', {

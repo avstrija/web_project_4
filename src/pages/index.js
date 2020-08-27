@@ -16,93 +16,103 @@ const api = new Api({
         }
     });
 
-let myId = "";
+api.getAppInfo()
+    .then(([userInfoRes, cardInfoRes]) => {
+        //PROFILE
+        //Profile setup
+        const userInfo = new UserInfo({name: ".profile__username", job: ".profile__bio", avatar: ".profile__pic"});
+        userInfo.setUserInfo({username: userInfoRes.name, about: userInfoRes.about});
+        userInfo.setAvatar({avatar: userInfoRes.avatar});
+        const myId = userInfoRes._id;
 
-api.getUserInfo().then(res => {
-    const userInfo = new UserInfo({name: ".profile__username", job: ".profile__bio", avatar: ".profile__pic"});
-    userInfo.setUserInfo({username: res.name, about: res.about});
-    userInfo.setAvatar({avatar: res.avatar});
-    myId = res._id;
-
-    //Updating profile
-    const profileUpdate = new PopupWithForm(".modal__container_type_update", ".modal_goal_update", ".profile__edit-btn",
-    (e, data) => {
-        userInfo.setUserInfo(data);
-        api.setUserInfo({name: data.username, about: data.about})
-                .catch(err => console.log(err))
-                .finally(profileUpdate.close());
-    },
-    () => {
-        const values = userInfo.getUserInfo();
-        document.querySelector("#username").value = values.username;
-        document.querySelector("#about").value = values.bio;
-    }
-    );
-    profileUpdate.setEventListeners();
-    const avatarUpdate = new PopupWithForm(".modal__container_type_avatar", ".modal_goal_avatar", ".profile__userpic",
-    (e, data) => {
-        api.setUserAvatar({avatar: data.avatar})
-            .then(() => {
-                userInfo.setAvatar({avatar: data.avatar});
-            })
-            .catch(err => console.log(err))
-            .finally(avatarUpdate.close());
-    });
-    avatarUpdate.setEventListeners();
-    })
-    .catch(err => console.log(err));
-
-
-api.getCardList().then(res => {
-    const modalView = new PopupWithImage(".modal__container_type_view");
-    modalView.setEventListeners();
-    const modalDelete = new PopupConfirm(".modal__container_type_delete", ".modal_goal_delete");
-    const postsCreator = (data) => {
-        return new Card(data, myId, ".post-template", () => {modalView.open(data)}, (e, cardId) => {
-            e.stopPropagation();
-            const cardToRemove = e.target.closest(".post");
-            modalDelete.setEventListeners();
-            modalDelete.open();
-            modalDelete.setSubmitAction((e) => {
-                api.removeCard(cardId)
-                    .then(() => {
-                            cardToRemove.remove();
-                        })
-                    .catch(err => console.log(err))
-                    .finally(modalDelete.close());
-                    })
-        }, (e, cardId) => {
-            api.changeLikeCardStatus(cardId, !e.target.classList.contains('post__like_liked'))
-                .then((res) => {
-                    e.target.nextElementSibling.textContent = res.likes.length;
+        //Updating profile
+        const profileUpdate = new PopupWithForm(".modal__container_type_update", ".modal_goal_update", ".profile__edit-btn",
+        (e, data) => {
+            userInfo.setUserInfo(data);
+            api.setUserInfo({name: data.username, about: data.about})
+                .then(() => profileUpdate.close())
+                .catch(err => console.log(err));
+        },
+        () => {
+            const values = userInfo.getUserInfo();
+            document.querySelector("#username").value = values.username;
+            document.querySelector("#about").value = values.bio;
+        }
+        );
+        profileUpdate.setEventListeners();
+        
+        //Updating the avatar
+        const avatarUpdate = new PopupWithForm(".modal__container_type_avatar", ".modal_goal_avatar", ".profile__userpic",
+        (e, data) => {
+            api.setUserAvatar({avatar: data.avatar})
+                .then(() => {
+                    userInfo.setAvatar({avatar: data.avatar});
+                    avatarUpdate.close();
                 })
                 .catch(err => console.log(err));
-            e.target.classList.toggle('post__like_liked');
-        })
-    
-    }
-
-    const feed = new Section({items: res, renderer: (item) => {
-        const card = postsCreator(item);
-        feed.addItem(card.generateCard());
-        }
-    }, ".photo-grid__posts");
-    feed.renderItems();
-
-    const postCreate = new PopupWithForm(".modal__container_type_create", ".modal_goal_create", ".profile__add-btn",
-    (e, data) => {
-        api.addCard(data)
-            .then(res => {
-                const post = postsCreator(res);
-                postCreate.clear();
-                feed.addItem(post.generateCard());
-            })
-            .catch(err => console.log(err))
-            .finally(postCreate.close());
         });
-    postCreate.setEventListeners();   
+        avatarUpdate.setEventListeners();
+
+        //IMAGE FEED
+        //Setting up the fullview popup
+        const modalView = new PopupWithImage(".modal__container_type_view");
+        modalView.setEventListeners();
+        
+        //Setting up the image deleting popup
+        const modalDelete = new PopupConfirm(".modal__container_type_delete", ".modal_goal_delete");
+        
+        //Setting up the post creating function
+        const postsCreator = (data) => {
+            return new Card(data, myId, ".post-template", () => {modalView.open(data)}, (e, cardId) => {
+                e.stopPropagation();
+                const cardToRemove = e.target.closest(".post");
+                modalDelete.setEventListeners();
+                modalDelete.open();
+                modalDelete.setSubmitAction((e) => {
+                    api.removeCard(cardId)
+                        .then(() => {
+                                cardToRemove.remove();
+                                modalDelete.close();
+                            })
+                        .catch(err => console.log(err));
+                        })
+            }, (e, cardId) => {
+                api.changeLikeCardStatus(cardId, !e.target.classList.contains('post__like_liked'))
+                    .then((res) => {
+                        e.target.nextElementSibling.textContent = res.likes.length;
+                    })
+                    .catch(err => console.log(err));
+                e.target.classList.toggle('post__like_liked');
+            })
+        
+        }
+
+        //Setting up the image creating popup
+        const postCreate = new PopupWithForm(".modal__container_type_create", ".modal_goal_create", ".profile__add-btn",
+        (e, data) => {
+            api.addCard(data)
+                .then(res => {
+                    const post = postsCreator(res);
+                    postCreate.clear();
+                    feed.addItem(post.generateCard());
+                    postCreate.close();
+                })
+                .catch(err => console.log(err));
+            });
+        postCreate.setEventListeners();  
+        
+        //Rendering the initial cards
+        const feed = new Section({items: cardInfoRes, renderer: (item) => {
+            const card = postsCreator(item);
+            feed.addItem(card.generateCard());
+            }
+        }, ".photo-grid__posts");
+        feed.renderItems(); 
     })
     .catch(err => console.log(err));
+
+
+
 
 //Form validation
 const settings = {
