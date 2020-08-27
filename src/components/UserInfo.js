@@ -5,20 +5,12 @@ export default class UserInfo {
         this._avatar = document.querySelector(avatar);
     }
 
-    getUserId() {
-        return this._userId;
+    getUserInfo() {
+        return {username: this._userName.textContent, bio: this._userJob.textContent}
     }
 
     setAvatar({avatar}) {
         this._avatar.src = avatar;
-    }
-
-    getUserInfo() {
-        this._inputUsername = document.querySelector("#username");
-        this._inputBio = document.querySelector("#bio");
-
-        this._inputUsername.value = this._userName.textContent;
-        this._inputBio.value = this._userJob.textContent;
     }
 
     setUserInfo({username, about}) {

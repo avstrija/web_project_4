@@ -9,7 +9,6 @@ export default class Api {
             headers: this._headers
         })
         .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
-        .catch(err => console.log(err))
     }
 
     //GET https://around.nomoreparties.co/v1/groupId/users/me
@@ -18,7 +17,6 @@ export default class Api {
             headers: this._headers
         })
         .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
-        .catch(err => console.log(err))
     }
 
     //POST https://around.nomoreparties.co/v1/groupId/cards
@@ -32,7 +30,6 @@ export default class Api {
             })
         })
         .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
-        .catch(err => console.log(err))
     }
 
     //DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
@@ -42,7 +39,6 @@ export default class Api {
             method: "DELETE"
         })
         .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
-        .catch(err => console.log(err))
     }
 
     //PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
@@ -52,7 +48,6 @@ export default class Api {
             method: like ? "PUT" : "DELETE"
         })
         .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
-        .catch(err => console.log(err))
     }
 
 
@@ -67,7 +62,6 @@ export default class Api {
             })
         })
         .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
-        .catch(err => console.log(err))
     }
 
     //PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
@@ -80,6 +74,5 @@ export default class Api {
             })
         })
         .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
-        .catch(err => console.log(err))
     }
 }

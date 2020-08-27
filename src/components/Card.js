@@ -1,8 +1,9 @@
 export default class Card {
-    constructor(data, cardTemplateSelector, handleCardClick, handleDeleteClick, handleLikeIcon) {
+    constructor(data, userId, cardTemplateSelector, handleCardClick, handleDeleteClick, handleLikeIcon) {
         this._name = data.name;
         this._link = data.link;
         this._creator = data.owner._id;
+        this._user = userId;
         this._likes = data.likes;
         this._cardTemplateSelector = cardTemplateSelector;
         this._handleCardClick = handleCardClick;
@@ -10,11 +11,6 @@ export default class Card {
         this._handleDeleteClick = handleDeleteClick;
         this._handleLikeIcon = handleLikeIcon;
     }
-
-    id() {
-        return this._id;
-    }
-
     _setEventListeners() {
         const remove = this._card.querySelector(".post__remove");
         const like = this._card.querySelector(".post__like");
@@ -29,17 +25,17 @@ export default class Card {
         return postTemplate;
     }
 
-    generateCard(myId) { 
+    generateCard() { 
         this._card = this._getCardTemplate();
         this._card.querySelector(".post__caption").textContent = this._name;
-        if (this._creator === myId) {
+        if (this._creator === this._user) {
             this._card.querySelector(".post__remove").classList.remove("post__remove_disabled");
         }
         
         this._cardImage = this._card.querySelector(".post__image");
         this._cardImage.setAttribute("style", `background-image: url(${this._link})`);
         this._card.querySelector(".post__like-count").textContent = this._likes.length;
-        if(this._likes.some((like) => like._id === myId)) {
+        if(this._likes.some((like) => like._id === this._user)) {
             this._card.querySelector(".post__like").classList.add("post__like_liked");
         }
         this._setEventListeners();
