@@ -59,14 +59,14 @@ api.getAppInfo()
         modalView.setEventListeners();
         
         //Setting up the image deleting popup
-        const modalDelete = new PopupConfirm(".modal__container_type_delete", ".modal_goal_delete");
+        const modalDelete = new PopupConfirm(".modal__container_type_delete", ".modal_goal_delete", "modal__save-btn_disabled");
+        modalDelete.setEventListeners();
         
         //Setting up the post creating function
         const postsCreator = (data) => {
             return new Card(data, myId, ".post-template", () => {modalView.open(data)}, (e, cardId) => {
                 e.stopPropagation();
                 const cardToRemove = e.target.closest(".post");
-                modalDelete.setEventListeners();
                 modalDelete.open();
                 modalDelete.setSubmitAction((e) => {
                     api.removeCard(cardId)

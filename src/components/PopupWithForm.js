@@ -26,6 +26,11 @@ export default class PopupWithForm extends Popup {
         return this._formValues;
     }
 
+    open() {
+        this._handleLoading(false);
+        super.open();
+    }
+
     clear() {
         this._formElement.reset();
     }
@@ -43,7 +48,6 @@ export default class PopupWithForm extends Popup {
             e.preventDefault();
             this._handleLoading(true);
             this._submitHandler(e, this._getInputValues());
-            this._handleLoading(false);
         });
         
         super.setEventListeners();
